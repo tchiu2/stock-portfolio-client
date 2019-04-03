@@ -47,7 +47,7 @@ class SessionForm extends Component {
           <Grid container direction='column' spacing={16}>
             <Grid item>
               <Heading component="h1" variant="h5">
-                Sign in
+                {this.props.formType === 'login' ? "Sign in" : "Register"}
               </Heading>
             </Grid>
             <Form>
@@ -71,7 +71,7 @@ class SessionForm extends Component {
                     <Input name="email" 
                       type="email" 
                       autoComplete="email" 
-                      autoFocus 
+                      autoFocus={this.props.formType === 'login'}
                       value={this.state.email} 
                       onChange={this.update("email")}
                     />

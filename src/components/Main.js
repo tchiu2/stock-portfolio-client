@@ -1,6 +1,6 @@
 import React from 'react';
 import Portfolio from './portfolio/Portfolio';
-import Navbar from './navbar/Navbar';
+import Navbar from './navbar/NavbarContainer';
 
 const Main = () => (
   <main>

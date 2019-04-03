@@ -5,6 +5,7 @@ import { createGenerateClassName, jssPreset } from '@material-ui/core/styles';
 import { Provider } from 'react-redux';
 import { Route, Switch, HashRouter } from 'react-router-dom';
 import '../styles/App.css';
+import { AuthRoute } from '../util/route_util';
 import Login from './session/LoginContainer';
 import Register from './session/RegisterContainer';
 import Main from './Main';
@@ -21,8 +22,8 @@ const App = ({ store }) => (
       <HashRouter>
         <div className="App">
           <Switch>
-            <Route path="/login" component={Login} />
-            <Route path="/register" component={Register} />
+            <AuthRoute path="/login" component={Login} />
+            <AuthRoute path="/register" component={Register} />
             <Route path="/" component={Main} />
           </Switch>
         </div>

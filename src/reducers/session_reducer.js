@@ -4,14 +4,18 @@ import {
 } from '../actions/session_actions';
 
 const _nullUser = Object.freeze({
-  currentUserId: null,
+  currentUser: {
+    name: '',
+    email: '',
+    id: null,
+  },
 });
 
 export default (state = _nullUser, action) => {
   Object.freeze(state);
   switch (action.type) {
     case RECEIVE_CURRENT_USER:
-      return { ...state, currentUserId: action.currentUser.id };
+      return { ...state, currentUser: action.currentUser };
     case LOGOUT_CURRENT_USER:
       return _nullUser;
     default:
