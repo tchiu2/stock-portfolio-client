@@ -2,7 +2,8 @@ import { handleResponse } from './fetch_util';
 
 export const login = user => (
   fetch('http://localhost:3001/login', {
-    method: "POST",
+    method: 'POST',
+    credentials: 'include',
     headers: { "Content-Type": "application/json", },
     body: JSON.stringify({ user }),
   }).then(handleResponse)

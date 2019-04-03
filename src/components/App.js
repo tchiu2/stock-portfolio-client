@@ -7,6 +7,7 @@ import { Route, Switch, HashRouter } from 'react-router-dom';
 import '../styles/App.css';
 import Login from './session/LoginContainer';
 import Register from './session/RegisterContainer';
+import Main from './Main';
 
 const generateClassName = createGenerateClassName();
 const jss = create({
@@ -22,6 +23,7 @@ const App = ({ store }) => (
           <Switch>
             <Route path="/login" component={Login} />
             <Route path="/register" component={Register} />
+            <Route path="/" component={Main} />
           </Switch>
         </div>
       </HashRouter>
