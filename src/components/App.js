@@ -6,6 +6,7 @@ import { Provider } from 'react-redux';
 import { Route, Switch, HashRouter } from 'react-router-dom';
 import '../styles/App.css';
 import Login from './session/LoginContainer';
+import Register from './session/RegisterContainer';
 
 const generateClassName = createGenerateClassName();
 const jss = create({
@@ -20,6 +21,7 @@ const App = ({ store }) => (
         <div className="App">
           <Switch>
             <Route path="/login" component={Login} />
+            <Route path="/register" component={Register} />
           </Switch>
         </div>
       </HashRouter>
