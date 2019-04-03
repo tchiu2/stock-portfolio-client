@@ -24,19 +24,15 @@ export const clearErrors = () => ({
 });
 
 export const signup = user => dispatch => (
-  APIUtil.signup(user).then(user => (
-    dispatch(receiveCurrentUser(user))
-  ), err => (
-    dispatch(receiveErrors(err.responseJSON))
-  ))
+  APIUtil.signup(user)
+    .then(user => dispatch(receiveCurrentUser(user)))
+    .catch(err => err.text().then(message => dispatch(receiveErrors(message))))
 );
 
 export const login = user => dispatch => (
-  APIUtil.login(user).then(user => (
-    dispatch(receiveCurrentUser(user))
-  ), err => (
-    dispatch(receiveErrors(err.responseJSON))
-  ))
+  APIUtil.login(user)
+    .then(user => dispatch(receiveCurrentUser(user)))
+    .catch(err => err.text().then(message => dispatch(receiveErrors(message))))
 );
 
 export const logout = () => dispatch => (
