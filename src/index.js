@@ -7,7 +7,6 @@ import * as serviceWorker from './serviceWorker';
 
 const store = configureStore();
 window.getState = store.getState;
-window.dispatch = store.dispatch;
 
 ReactDOM.render(<App store={ store } />, document.getElementById('root'));
 
