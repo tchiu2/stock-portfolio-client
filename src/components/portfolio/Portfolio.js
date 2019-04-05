@@ -17,13 +17,13 @@ const Portfolio = ({ portfolio, cash, totalPosition}) => (
             <PortfolioRow ticker="Ticker" name="Company" shares="Shares" value="Position" />
           </TableHead>
           <TableBody>
-            {portfolio.map(({ ticker, name, shares, value }) =>
+            {portfolio.map(([ticker, shares]) =>
               <PortfolioRow 
                 key={ticker} 
                 ticker={ticker} 
-                name={name} 
+                name="Name goes here"
                 shares={shares} 
-                value={value} 
+                value="300" 
               />
             )}
           </TableBody>

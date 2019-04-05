@@ -1,23 +1,7 @@
-import { handleResponse } from './fetch_util';
+import { fetchSession } from './fetch_util';
 
-export const login = user => (
-  fetch('http://localhost:3001/login', {
-    method: 'POST',
-    headers: { "Content-Type": "application/json", },
-    body: JSON.stringify({ user }),
-  }).then(handleResponse)
-);
+export const login = user => fetchSession('login', 'POST', user);
 
-export const signup = user => (
-  fetch('http://localhost:3001/signup', {
-    method: "POST",
-    headers: { "Content-Type": "application/json", },
-    body: JSON.stringify({ user }),
-  }).then(handleResponse)
-);
+export const signup = user => fetchSession('signup', 'POST', user);
 
-export const logout = user => (
-  fetch('http://localhost:3001/logout', {
-    method: "DELETE",
-  })
-);
+export const logout = () => fetchSession('logout', 'DELETE');

@@ -1,10 +1,8 @@
 import { connect } from 'react-redux';
 import Portfolio from './Portfolio';
 
-const msp = (state) => ({
-  portfolio: [
-    { ticker: "AAPL", name: "Apple", shares: "6", value: "$2,300.09" },
-  ],
+const msp = ({ entities: { portfolio } }) => ({
+  portfolio: Object.entries(portfolio),
   totalPosition: "$5,943.34",
   cash: "$5,000.00",
 });
