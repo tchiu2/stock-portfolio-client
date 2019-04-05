@@ -1,8 +1,9 @@
 import React from 'react';
+import Heading from '../shared/Heading';
 
 const Portfolio = () => (
   <div>
-    Portfolio page
+    <Heading>Portfolio ($5,943.34)</Heading>
   </div>
 );
 
