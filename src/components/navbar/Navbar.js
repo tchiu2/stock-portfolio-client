@@ -1,19 +1,46 @@
 import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
+import { NavLink, withRouter } from 'react-router-dom';
 import styled from 'styled-components';
 import AppBar from '@material-ui/core/AppBar';
+import Avatar from '@material-ui/core/Avatar';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
 import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
 
 import Button from '../shared/Button';
 
-const Greeting = styled(Typography)`
+const TabsContainer = styled(Tabs)`
   flex-grow: 1;
 `;
 
+const UserInfoItem = styled(MenuItem)`
+  font-weight: bold;
+`;
+
+const RightNavLinks = styled.div`
+  padding-right: 16px;
+`;
+
 class Navbar extends Component {
+  state = {
+    loggedIn: Boolean(this.props.id),
+    anchorEl: null,
+    value: 0,
+  };
+
+  componentDidUpdate(prevProps) {
+    if (this.props.id !== prevProps.id) {
+      this.setState({ loggedIn: Boolean(this.props.id) });
+    }
+  }
+
+  handleChange = (e, value) => this.setState({ value });
+
   handleClick = action => e => {
     e.preventDefault();
+    this.handleClose(e);
     switch(action) {
       case 'login':
         return this.props.history.push('/login');
@@ -24,26 +51,60 @@ class Navbar extends Component {
       default:
         return;
     }
-  }
+  };
+
+  handleClose = e => this.setState({ anchorEl: null });
+
+  handleMenu = e => this.setState({ anchorEl: e.currentTarget });
 
   render() {
-    const links = this.props.currentUser.id === null
-      ? (
-        <>
-          <Button onClick={this.handleClick('login')} color="inherit">Login</Button>
-          <Button onClick={this.handleClick('signup')} color="inherit">Signup</Button>
-        </>
-      ) : (
-        <Button onClick={this.handleClick('logout')} color="inherit">Logout</Button>
-      );
+    const { loggedIn, anchorEl, value } = this.state;
+    const { name } = this.props;
+    const open = Boolean(anchorEl);
 
     return (
-      <AppBar position="static">
-        <Toolbar>
-          <Greeting align="left" variant="h6" color="inherit">
-            {this.props.currentUser.id ? `Welcome back, ${this.props.currentUser.name}` : "Homepage"}
-          </Greeting>
-          {links}
+      <AppBar position="static" color="default">
+      <Toolbar disableGutters>
+          <TabsContainer
+            textColor="inherit" 
+            indicatorColor="primary"
+            value={value} 
+            onChange={this.handleChange}
+          >
+            <Tab label="Portfolio" component={NavLink} to="/portfolio" selected />
+            <Tab label="Transactions" component={NavLink} to="/transactions" />
+          </TabsContainer>
+          {loggedIn ? (
+            <RightNavLinks>
+              <Avatar 
+                children={name[0]} 
+                onClick={this.handleMenu}
+              />
+							<Menu
+								id="menu-appbar"
+								anchorEl={anchorEl}
+								anchorOrigin={{
+									vertical: 'top',
+									horizontal: 'right',
+								}}
+								transformOrigin={{
+									vertical: 'top',
+									horizontal: 'right',
+								}}
+								open={open}
+								onClose={this.handleClose}
+							>
+                <UserInfoItem disabled>{name}</UserInfoItem>
+								<MenuItem onClick={this.handleClick("logout")}>Logout</MenuItem>
+							</Menu>
+            </RightNavLinks>
+          ) : (
+            <RightNavLinks>
+              <Button onClick={this.handleClick('login')} color="primary">Login</Button>
+              <Button onClick={this.handleClick('signup')} color="primary">Signup</Button>
+            </RightNavLinks>
+          )}
+
         </Toolbar>
       </AppBar>
     );

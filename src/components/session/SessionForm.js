@@ -52,7 +52,7 @@ class SessionForm extends Component {
             </Grid>
             <Form>
               <Grid container direction='column' spacing={8}>
-                {this.props.formType === 'signup' ? 
+                {this.props.formType === 'signup' && 
                   <Grid item>
                     <FormControl margin="normal" required fullWidth>
                       <InputLabel htmlFor="text">Name</InputLabel>
@@ -64,7 +64,7 @@ class SessionForm extends Component {
                       />
                     </FormControl>
                   </Grid>
-                  : ""}
+                }
                 <Grid item>
                   <FormControl margin="normal" required fullWidth>
                     <InputLabel htmlFor="email">Email</InputLabel>
@@ -90,7 +90,7 @@ class SessionForm extends Component {
                   </FormControl>
                 </Grid>
                 <Grid item>
-                  {this.props.errors !== "" ? <ErrorText>{this.props.errors}</ErrorText> : ""}
+                  {this.props.errors !== "" && <ErrorText>{this.props.errors}</ErrorText>}
                 </Grid>
                 <Grid item>
                   <Button
@@ -100,7 +100,7 @@ class SessionForm extends Component {
                     color="primary"
                     onClick={this.handleSubmit}
                   >
-                    Sign in
+                    {this.props.formType === 'login' ? "Sign in" : "Register"}
                   </Button>
                 </Grid>
               </Grid>
