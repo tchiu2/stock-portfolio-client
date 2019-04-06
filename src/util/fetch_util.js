@@ -7,3 +7,13 @@ export const fetchSession = (url, method, body = {}) =>
     if (!res.ok) { throw res }
     return res.json();
   });
+
+export const fetchStockData = stocks => {
+  const symbols = stocks.join(","); 
+  return fetch(`https://api.iextrading.com/1.0/stock/market/batch?symbols=${symbols}&types=quote`,{
+    method: "GET"
+  }).then(res => {
+    if (!res.ok) { throw res }
+    return res.json();
+  });
+}
