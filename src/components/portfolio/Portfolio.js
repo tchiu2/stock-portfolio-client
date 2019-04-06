@@ -27,6 +27,7 @@ class Portfolio extends Component {
               <TableBody>
                 {Object.keys(stocks).map(symbol =>
                   <PortfolioRow
+                    key={symbol}
                     symbol={symbol}
                     name={stocks[symbol].companyName}
                     shares={portfolio[symbol]}

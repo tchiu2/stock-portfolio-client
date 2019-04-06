@@ -10,6 +10,7 @@ export const fetchSession = (url, method, body = {}) =>
 
 export const fetchStockData = stocks => {
   const symbols = stocks.join(","); 
+  if (symbols.length === 0) return Promise.reject("empty query");
   return fetch(`https://api.iextrading.com/1.0/stock/market/batch?symbols=${symbols}&types=quote`,{
     method: "GET"
   }).then(res => {
