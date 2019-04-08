@@ -43,7 +43,7 @@ class SessionForm extends Component {
 
   renderErrors = key => {
     if (this.props.errors[key]) {
-      const label = key !== "error" ? key[0].toUpperCase() + key.slice(1)  : "";
+      const label = key !== "error" ? key[0].toUpperCase() + key.slice(1) : "";
       return (
         <FormHelperText error>
           {label} {this.props.errors[key]}

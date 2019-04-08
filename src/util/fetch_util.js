@@ -28,8 +28,8 @@ export const deleteSession = () => {
   }).then(responseHandler);
 }
 
-export const getResource = (resource, id) =>
-  fetch(`${baseURL}/${resource}/${id}`, {
+export const getResource = (resource, id, nestedResource = "") =>
+  fetch(`${baseURL}/${resource}/${id}/${nestedResource}`, {
     method: "GET",
     headers: setHeaders(true),
   }).then(responseHandler);

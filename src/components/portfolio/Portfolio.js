@@ -9,6 +9,10 @@ import PortfolioRow from './PortfolioRow';
 import Heading from '../shared/Heading';
 
 class Portfolio extends Component {
+  componentDidMount() {
+    this.props.fetchPortfolio(this.props.currentUser);
+  }
+
   render() {
     const { portfolio, cash, totalPosition } = this.props;
     return (
