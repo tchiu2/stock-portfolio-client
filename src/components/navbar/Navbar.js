@@ -27,7 +27,7 @@ class Navbar extends Component {
   state = {
     loggedIn: Boolean(this.props.currentUser),
     anchorEl: null,
-    value: 0,
+    value: this.props.location.pathname === "/portfolio" ? 0 : 1,
   };
 
   componentDidUpdate(prevProps) {

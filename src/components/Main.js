@@ -1,7 +1,7 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import Portfolio from './portfolio/PortfolioContainer';
-import Transactions from './transactions/Transactions';
+import Transactions from './transactions/TransactionsContainer';
 import Navbar from './navbar/NavbarContainer';
 
 const Main = () => (
