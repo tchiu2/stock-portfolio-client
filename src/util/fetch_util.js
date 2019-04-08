@@ -21,10 +21,12 @@ export const postSession = (url, body = {}) =>
     body: JSON.stringify({ user: body }),
   }).then(responseHandler);
 
-export const deleteSession = () =>
-  fetch(`${baseURL}/logout`, {
+export const deleteSession = () => {
+  sessionStorage.removeItem('jwt');
+  return fetch(`${baseURL}/logout`, {
     method: "DELETE",
   }).then(responseHandler);
+}
 
 export const getResource = (resource, id) =>
   fetch(`${baseURL}/${resource}/${id}`, {
