@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import Table from '@material-ui/core/Table';
 import TableHead from '@material-ui/core/TableHead';
@@ -8,13 +8,8 @@ import { formatCurrency } from '../../util/format_util';
 import PortfolioRow from './PortfolioRow';
 import Heading from '../shared/Heading';
 
-class Portfolio extends Component {
-  componentDidMount() {
-    this.props.fetchPortfolio(this.props.currentUser);
-  }
-
-  render() {
-    const { portfolio, cash, totalPosition } = this.props;
+const Portfolio = ({ portfolio, users, totalPosition, currentUser }) => {
+    const cash = users[currentUser] ? users[currentUser].cashBalance : 0; 
     return (
       <div style={{ flexGrow: 1, width: '100%', overflowX: 'auto', padding: 20 }}>
         <Grid container spacing={40}>
@@ -38,12 +33,11 @@ class Portfolio extends Component {
             </Table>
           </Grid>
           <Grid item xs>
-            <Heading>Buying component goes here {cash}</Heading>
+            <Heading>Balance: {formatCurrency(cash)}</Heading>
           </Grid>
         </Grid>
       </div>
     );
   }
-}
 
 export default Portfolio;

@@ -22,9 +22,8 @@ const Auth = ({ loggedIn, path, component: Component }) => (
 );
 
 class Protected extends Component {
-  constructor(props) {
-    super(props);
-    this.props.fetchUser(this.props.currentUser);
+  componentDidMount() {
+    this.props.currentUser && this.props.fetchUser(this.props.currentUser);
   }
 
   render() {
