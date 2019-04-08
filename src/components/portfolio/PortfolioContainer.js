@@ -16,7 +16,6 @@ class PortfolioContainer extends Component {
 const msp = ({ entities: { users, portfolio }, session: { currentUser } }) => ({
   portfolio,
   users,
-  totalPosition: Object.values(portfolio).reduce((total, item) => total + (item * 100), 0),
   currentUser,
 });
 

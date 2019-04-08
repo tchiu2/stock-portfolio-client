@@ -8,8 +8,9 @@ import { formatCurrency } from '../../util/format_util';
 import PortfolioRow from './PortfolioRow';
 import Heading from '../shared/Heading';
 
-const Portfolio = ({ portfolio, users, totalPosition, currentUser }) => {
+const Portfolio = ({ portfolio, users, currentUser }) => {
     const cash = users[currentUser] ? users[currentUser].cashBalance : 0; 
+    const totalPosition = Object.values(portfolio).reduce((total, item) => total + item.value, 0);
     return (
       <div style={{ flexGrow: 1, width: '100%', overflowX: 'auto', padding: 20 }}>
         <Grid container spacing={40}>
@@ -20,13 +21,13 @@ const Portfolio = ({ portfolio, users, totalPosition, currentUser }) => {
                 <PortfolioRow symbol="Symbol" name="Company Name" shares="Shares" value="Position" />
               </TableHead>
               <TableBody>
-                {Object.keys(portfolio).map(symbol =>
+                {Object.entries(portfolio).map(([symbol, data]) =>
                   <PortfolioRow
                     key={symbol}
                     symbol={symbol}
-                    name="Name"
-                    shares={portfolio[symbol]}
-                    value={100 * portfolio[symbol]}
+                    name={data.name}
+                    shares={data.shares}
+                    value={data.value}
                   />
                 )}
               </TableBody>
