@@ -26,7 +26,7 @@ export const clearErrors = () => ({
 export const signup = user => dispatch => (
   APIUtil.signup(user)
     .then(user => dispatch(receiveCurrentUser(user)))
-    .catch(({ errors }) => console.log(errors[0].detail))
+    .catch(({ errors }) => dispatch(receiveErrors(errors)))
 );
 
 export const login = user => dispatch => (
@@ -38,6 +38,7 @@ export const login = user => dispatch => (
 export const logout = () => dispatch => (
   APIUtil.logout()
     .then(user => dispatch(logoutCurrentUser()))
+    .catch(err => dispatch(receiveErrors(err)))
 );
 
 export const fetchUser = userId => dispatch => (

@@ -3,6 +3,7 @@ import { Link as RouterLink } from 'react-router-dom';
 import styled from 'styled-components';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import FormControl from '@material-ui/core/FormControl';
+import FormHelperText from '@material-ui/core/FormHelperText';
 import Grid from '@material-ui/core/Grid';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -10,7 +11,6 @@ import Link from '@material-ui/core/Link';
 import Paper from '@material-ui/core/Paper';
 
 import Button from '../shared/Button';
-import ErrorText from '../shared/ErrorText';
 import Heading from '../shared/Heading';
 
 const FormContainer = styled.main`
@@ -41,6 +41,17 @@ class SessionForm extends Component {
     this.props.processForm(this.state);
   }
 
+  renderErrors = key => {
+    if (this.props.errors[key]) {
+      const label = key !== "error" ? key[0].toUpperCase() + key.slice(1)  : "";
+      return (
+        <FormHelperText error>
+          {label} {this.props.errors[key]}
+        </FormHelperText>
+      );
+    }
+  }
+
   render() {
     return (
       <FormContainer> 
@@ -65,6 +76,7 @@ class SessionForm extends Component {
                         onChange={this.update("name")}
                       />
                     </FormControl>
+                    {this.renderErrors("name")}
                   </Grid>
                 }
                 <Grid item>
@@ -78,6 +90,7 @@ class SessionForm extends Component {
                       onChange={this.update("email")}
                     />
                   </FormControl>
+                  {this.renderErrors("email")}
                 </Grid>
                 <Grid item>
                   <FormControl margin="normal" required fullWidth>
@@ -90,10 +103,9 @@ class SessionForm extends Component {
                       onChange={this.update("password")}
                     />
                   </FormControl>
+                  {this.renderErrors("password")}
                 </Grid>
-                <Grid item>
-                  {<ErrorText>{this.props.errors}</ErrorText>}
-                </Grid>
+                <Grid item>{this.renderErrors("error")}</Grid>
                 <Grid item>
                   <Button
                     type="submit"
