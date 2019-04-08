@@ -3,7 +3,7 @@ import JssProvider from 'react-jss/lib/JssProvider';
 import { create } from 'jss';
 import { createGenerateClassName, jssPreset } from '@material-ui/core/styles';
 import { Provider } from 'react-redux';
-import { Route, Switch, HashRouter } from 'react-router-dom';
+import { Switch, HashRouter } from 'react-router-dom';
 import '../styles/App.css';
 import { AuthRoute, ProtectedRoute } from '../util/route_util';
 import Login from './session/LoginContainer';
@@ -24,7 +24,7 @@ const App = ({ store }) => (
           <Switch>
             <AuthRoute path="/login" component={Login} />
             <AuthRoute path="/register" component={Register} />
-            <Route path="/" component={Main} />
+            <ProtectedRoute path="/" component={Main} />
           </Switch>
         </div>
       </HashRouter>

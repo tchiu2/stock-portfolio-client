@@ -1,20 +1,33 @@
-export const fetchSession = (url, method, body = {}) => 
-  fetch(`http://localhost:3001/${url}`, {
-    method: method,
-    headers: { "Content-Type": "application/json", },
-    body: JSON.stringify({ user: body }),
-  }).then(res => {
-    if (!res.ok) { throw res }
-    return res.json();
-  });
+const baseURL = "http://localhost:3001";
 
-export const fetchStockData = stocks => {
-  const symbols = stocks.join(","); 
-  if (symbols.length === 0) return Promise.reject("empty query");
-  return fetch(`https://api.iextrading.com/1.0/stock/market/batch?symbols=${symbols}&types=quote`,{
-    method: "GET"
-  }).then(res => {
-    if (!res.ok) { throw res }
-    return res.json();
-  });
+const responseHandler = res => {
+  if (!res.ok) return res.json().then(err => { throw err });
+  const jwt = res.headers.get('Authorization');
+  jwt && sessionStorage.setItem('jwt', jwt);
+  return res.json();
 }
+
+const setHeaders = (withAuth) => {
+  const headers = new Headers();
+  headers.append("Content-Type", "application/json");
+  headers.append("Accept", "application/json");
+  withAuth && sessionStorage.jwt && headers.append("Authorization", sessionStorage.jwt);
+  return headers;
+}
+export const postSession = (url, body = {}) =>
+  fetch(`${baseURL}/${url}`, {
+    method: "POST",
+    headers: setHeaders(false),
+    body: JSON.stringify({ user: body }),
+  }).then(responseHandler);
+
+export const deleteSession = () =>
+  fetch(`${baseURL}/logout`, {
+    method: "DELETE",
+  }).then(responseHandler);
+
+export const getResource = (resource, id) =>
+  fetch(`${baseURL}/${resource}/${id}`, {
+    method: "GET",
+    headers: setHeaders(true),
+  }).then(responseHandler);

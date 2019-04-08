@@ -1,11 +1,25 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import JWTDecode from 'jwt-decode';
 import './styles/index.css';
 import App from './components/App';
 import configureStore from './store/store';
 import * as serviceWorker from './serviceWorker';
 
-const store = configureStore();
+let store;
+if (sessionStorage.jwt) {
+  let decoded = JWTDecode(sessionStorage.jwt);
+  const preloadedState = { 
+    session: {
+      currentUser: decoded.id,
+    }
+  };
+
+  store = configureStore(preloadedState);
+} else {
+  store = configureStore();
+}
+
 window.getState = store.getState;
 
 ReactDOM.render(<App store={ store } />, document.getElementById('root'));

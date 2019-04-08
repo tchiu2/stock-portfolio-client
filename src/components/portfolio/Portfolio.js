@@ -9,12 +9,8 @@ import PortfolioRow from './PortfolioRow';
 import Heading from '../shared/Heading';
 
 class Portfolio extends Component {
-  componentDidMount() {
-    this.props.fetchStocks(Object.keys(this.props.portfolio));
-  }
-
   render() {
-    const { portfolio, stocks, cash, totalPosition } = this.props;
+    const { portfolio, cash, totalPosition } = this.props;
     return (
       <div style={{ flexGrow: 1, width: '100%', overflowX: 'auto', padding: 20 }}>
         <Grid container spacing={40}>
@@ -25,13 +21,13 @@ class Portfolio extends Component {
                 <PortfolioRow symbol="Symbol" name="Company Name" shares="Shares" value="Position" />
               </TableHead>
               <TableBody>
-                {Object.keys(stocks).map(symbol =>
+                {Object.keys(portfolio).map(symbol =>
                   <PortfolioRow
                     key={symbol}
                     symbol={symbol}
-                    name={stocks[symbol].companyName}
+                    name="Name"
                     shares={portfolio[symbol]}
-                    value={stocks[symbol].latestPrice * portfolio[symbol]}
+                    value={100 * portfolio[symbol]}
                   />
                 )}
               </TableBody>

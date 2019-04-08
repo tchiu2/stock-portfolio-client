@@ -25,14 +25,14 @@ const RightNavLinks = styled.div`
 
 class Navbar extends Component {
   state = {
-    loggedIn: Boolean(this.props.id),
+    loggedIn: Boolean(this.props.currentUser),
     anchorEl: null,
     value: 0,
   };
 
   componentDidUpdate(prevProps) {
-    if (this.props.id !== prevProps.id) {
-      this.setState({ loggedIn: Boolean(this.props.id) });
+    if (this.props.currentUser !== prevProps.currentUser) {
+      this.setState({ loggedIn: Boolean(this.props.currentUser) });
     }
   }
 
@@ -58,8 +58,9 @@ class Navbar extends Component {
   handleMenu = e => this.setState({ anchorEl: e.currentTarget });
 
   render() {
+    const { users, currentUser } = this.props;
     const { loggedIn, anchorEl, value } = this.state;
-    const { name } = this.props;
+    const name = users[currentUser] ? users[currentUser].name : "";
     const open = Boolean(anchorEl);
 
     return (

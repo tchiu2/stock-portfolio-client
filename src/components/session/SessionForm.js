@@ -92,7 +92,7 @@ class SessionForm extends Component {
                   </FormControl>
                 </Grid>
                 <Grid item>
-                  {this.props.errors !== "" && <ErrorText>{this.props.errors}</ErrorText>}
+                  {<ErrorText>{this.props.errors}</ErrorText>}
                 </Grid>
                 <Grid item>
                   <Button
