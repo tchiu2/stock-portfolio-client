@@ -12,8 +12,8 @@ const Portfolio = ({ portfolio, users, currentUser }) => {
     const cash = users[currentUser] ? users[currentUser].cashBalance : 0; 
     const totalPosition = Object.values(portfolio).reduce((total, item) => total + item.value, 0);
     return (
-      <div style={{ flexGrow: 1, width: '100%', overflowX: 'auto', padding: 20 }}>
-        <Grid container spacing={40}>
+      <div>
+        <Grid container spacing={32}>
           <Grid item xs={8}>
             <Heading align="left">Portfolio | {formatCurrency(totalPosition)}</Heading>
             <Table>

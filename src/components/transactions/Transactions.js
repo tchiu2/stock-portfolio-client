@@ -8,9 +8,9 @@ import TransactionRow from './TransactionRow';
 import Heading from '../shared/Heading';
 
 const Transactions = ({ transactions }) => (
-  <div style={{ flexGrow: 1, width: '100%', overflowX: 'auto', padding: 20 }}>
+  <div>
     <Grid container spacing={40}>
-      <Grid item xs={8}>
+      <Grid item xs={12}>
         <Heading align="left">Transactions</Heading>
         <Table>
           <TableHead>
@@ -20,6 +20,7 @@ const Transactions = ({ transactions }) => (
               buySell="Buy/Sell"
               quantity="Quantity"
               price="Price"
+              total="Total Transaction Amount"
             />
           </TableHead>
           <TableBody>
@@ -31,6 +32,7 @@ const Transactions = ({ transactions }) => (
                 buySell={txn.buySell}
                 quantity={txn.quantity}
                 price={txn.price}
+                total={txn.quantity * txn.price}
               />
             )}
           </TableBody>
