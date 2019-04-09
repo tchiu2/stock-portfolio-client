@@ -1,24 +1,33 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
+import Paper from '@material-ui/core/Paper';
 import Table from '@material-ui/core/Table';
 import TableHead from '@material-ui/core/TableHead';
 import TableBody from '@material-ui/core/TableBody';
+import Typography from '@material-ui/core/Typography';
 
 import { formatCurrency } from '../../util/format_util';
 import PortfolioRow from './PortfolioRow';
 import Heading from '../shared/Heading';
+import OrderWidget from '../orders/OrderWidget';
 
 const Portfolio = ({ portfolio, users, currentUser }) => {
-    const cash = users[currentUser] ? users[currentUser].cashBalance : 0; 
+    const cashBalance = users[currentUser] ? users[currentUser].cashBalance : 0;
     const totalPosition = Object.values(portfolio).reduce((total, item) => total + item.value, 0);
     return (
-      <div>
-        <Grid container spacing={32}>
-          <Grid item xs={8}>
-            <Heading align="left">Portfolio | {formatCurrency(totalPosition)}</Heading>
+      <div style={{ margin: 24 }}>
+      <Grid container spacing={32}>
+        <Grid item xs={8}>
+          <Paper style={{ padding: 24 }}>
+            <Typography variant="h4" align="left">Portfolio | {formatCurrency(totalPosition)}</Typography>
             <Table>
               <TableHead>
-                <PortfolioRow symbol="Symbol" name="Company Name" shares="Shares" value="Position" />
+                <PortfolioRow
+                  symbol="Symbol"
+                  name="Company Name"
+                  shares="Shares"
+                  value="Total Position"
+                />
               </TableHead>
               <TableBody>
                 {Object.entries(portfolio).map(([symbol, data]) =>
@@ -32,11 +41,12 @@ const Portfolio = ({ portfolio, users, currentUser }) => {
                 )}
               </TableBody>
             </Table>
-          </Grid>
-          <Grid item xs>
-            <Heading>Balance: {formatCurrency(cash)}</Heading>
-          </Grid>
+          </Paper>
         </Grid>
+        <Grid item xs>
+          <OrderWidget cashBalance={cashBalance} />
+        </Grid>
+      </Grid>
       </div>
     );
   }

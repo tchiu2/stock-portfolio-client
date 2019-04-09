@@ -4,7 +4,8 @@ import { create } from 'jss';
 import { createGenerateClassName, jssPreset } from '@material-ui/core/styles';
 import { Provider } from 'react-redux';
 import { Switch, HashRouter } from 'react-router-dom';
-import '../styles/App.css';
+import CssBaseline from '@material-ui/core/CssBaseline';
+
 import { AuthRoute, ProtectedRoute } from '../util/route_util';
 import Login from './session/LoginContainer';
 import Register from './session/RegisterContainer';
@@ -20,6 +21,7 @@ const App = ({ store }) => (
   <JssProvider jss={jss} generateClassName={generateClassName}>
     <Provider store={store}>
       <HashRouter>
+        <CssBaseline />
         <div className="App">
           <Switch>
             <AuthRoute path="/login" component={Login} />

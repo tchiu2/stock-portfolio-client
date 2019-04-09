@@ -1,17 +1,19 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
+import Paper from '@material-ui/core/Paper';
 import Table from '@material-ui/core/Table';
 import TableHead from '@material-ui/core/TableHead';
 import TableBody from '@material-ui/core/TableBody';
+import Typography from '@material-ui/core/Typography';
 
 import TransactionRow from './TransactionRow';
 import Heading from '../shared/Heading';
 
 const Transactions = ({ transactions }) => (
-  <div>
-    <Grid container spacing={40}>
+  <Paper style={{ padding: 24, margin: 24, overflow: 'hidden' }}>
+    <Grid container>
       <Grid item xs={12}>
-        <Heading align="left">Transactions</Heading>
+        <Typography variant="h4" align="left">Transactions</Typography>
         <Table>
           <TableHead>
             <TransactionRow
@@ -39,7 +41,7 @@ const Transactions = ({ transactions }) => (
         </Table>
       </Grid>
     </Grid>
-  </div>
+  </Paper>
 );
 
 export default Transactions;

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 import styled from 'styled-components';
-import CssBaseline from '@material-ui/core/CssBaseline';
 import FormControl from '@material-ui/core/FormControl';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import Grid from '@material-ui/core/Grid';
@@ -34,7 +33,7 @@ class SessionForm extends Component {
     this.props.clearErrors();
   }
 
-  update = field => e => this.setState({ [field]: e.target.value, }); 
+  update = field => e => this.setState({ [field]: e.target.value });
 
   handleSubmit = e => {
     e.preventDefault();
@@ -55,7 +54,6 @@ class SessionForm extends Component {
   render() {
     return (
       <FormContainer> 
-        <CssBaseline />
         <Paper>
           <Grid container direction='column' spacing={16}>
             <Grid item>
