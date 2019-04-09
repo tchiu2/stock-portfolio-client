@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import Divider from '@material-ui/core/Divider';
 import FormControl from '@material-ui/core/FormControl';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
+import FormHelperText from '@material-ui/core/FormHelperText';
 import FormLabel from '@material-ui/core/FormLabel';
 import Grid from '@material-ui/core/Grid';
 import Input from '@material-ui/core/Input';
@@ -20,11 +22,26 @@ class OrderWidget extends Component {
     buy_sell: 'buy',
   }
 
+  componentWillUnmount() {
+    this.props.clearTransactionErrors();
+  }
+
   update = field => e => this.setState({ [field]: e.target.value }); 
 
   handleSubmit = e => {
     e.preventDefault();
     this.props.postTransaction(this.state);
+  }
+
+  renderErrors = key => {
+    if (this.props.errors[key]) {
+      const label = key !== "error" ? key[0].toUpperCase() + key.slice(1) : "";
+      return (
+        <FormHelperText error>
+          {label} {this.props.errors[key]}
+        </FormHelperText>
+      );
+    }
   }
 
   render() {
@@ -42,8 +59,8 @@ class OrderWidget extends Component {
             </Typography>
           </Grid>
           <Grid item>
-            <FormControl component="fieldset">
-            <FormLabel>Order type:</FormLabel>
+            <FormControl margin="dense" component="fieldset">
+              <FormLabel>Order type:</FormLabel>
               <RadioGroup
                 row
                 aria-label="Buy/Sell"
@@ -58,20 +75,22 @@ class OrderWidget extends Component {
           </Grid>
           <Grid item>
             <FormControl margin="dense" required fullWidth>
-              <InputLabel htmlFor="text">Symbol</InputLabel>
+              <InputLabel htmlFor="symbol">Symbol</InputLabel>
               <Input name="symbol" 
                 type="text" 
-                autoFocus 
+                required
                 value={this.state.symbol} 
                 onChange={this.update("symbol")}
               />
             </FormControl>
+            {this.renderErrors("stock")}
           </Grid>
           <Grid item>
             <FormControl margin="dense" required fullWidth>
-              <InputLabel htmlFor="text">Quantity</InputLabel>
+              <InputLabel htmlFor="quantity">Quantity</InputLabel>
               <Input name="quantity" 
                 type="number" 
+                required
                 min="0"
                 step="1"
                 pattern="\d+"
@@ -79,7 +98,9 @@ class OrderWidget extends Component {
                 onChange={this.update("quantity")}
               />
             </FormControl>
+            {this.renderErrors("quantity")}
           </Grid>
+          {this.renderErrors("balance")}
           <Grid item>
             <Button
               type="submit"

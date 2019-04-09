@@ -31,6 +31,6 @@ export const fetchTransactions = userId => dispatch => (
 
 export const postTransaction = transaction => dispatch => (
   APIUtil.executeTransaction(transaction)
-    .then(({ transaction }) => dispatch(receiveTransaction(transaction)))
+    .then(transaction => dispatch(receiveTransaction(transaction)))
     .catch(({ errors }) => dispatch(receiveErrors(errors)))
 );

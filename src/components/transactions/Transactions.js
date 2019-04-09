@@ -7,7 +7,6 @@ import TableBody from '@material-ui/core/TableBody';
 import Typography from '@material-ui/core/Typography';
 
 import TransactionRow from './TransactionRow';
-import Heading from '../shared/Heading';
 
 const Transactions = ({ transactions }) => (
   <Paper style={{ padding: 24, margin: 24, overflow: 'hidden' }}>

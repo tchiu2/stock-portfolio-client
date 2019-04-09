@@ -8,7 +8,6 @@ import Typography from '@material-ui/core/Typography';
 
 import { formatCurrency } from '../../util/format_util';
 import PortfolioRow from './PortfolioRow';
-import Heading from '../shared/Heading';
 import OrderWidget from '../orders/OrderWidgetContainer';
 
 const Portfolio = ({ portfolio, users, currentUser }) => {
