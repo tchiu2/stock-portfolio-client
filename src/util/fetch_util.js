@@ -33,3 +33,10 @@ export const getResource = (resource, id, nestedResource = "") =>
     method: "GET",
     headers: setHeaders(true),
   }).then(responseHandler);
+
+export const postTransaction = (body = {}) =>
+  fetch(`${baseURL}/transactions`, {
+    method: "POST",
+    headers: setHeaders(true),
+    body: JSON.stringify({ transaction: body }),
+  }).then(responseHandler);

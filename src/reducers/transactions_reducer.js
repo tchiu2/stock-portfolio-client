@@ -1,4 +1,7 @@
-import { RECEIVE_TRANSACTIONS } from '../actions/transaction_actions';
+import { 
+  RECEIVE_TRANSACTIONS, 
+  RECEIVE_TRANSACTION,
+} from '../actions/transaction_actions';
 
 export default (state = {}, action) => {
   Object.freeze(state);
@@ -8,6 +11,8 @@ export default (state = {}, action) => {
         ...state,
         [txn.id]: txn,
       }), {});
+    case RECEIVE_TRANSACTION:
+      return { ...state, [action.transaction.id]: action.transaction };
     default:
       return state;
   }

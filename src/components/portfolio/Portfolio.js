@@ -9,10 +9,9 @@ import Typography from '@material-ui/core/Typography';
 import { formatCurrency } from '../../util/format_util';
 import PortfolioRow from './PortfolioRow';
 import Heading from '../shared/Heading';
-import OrderWidget from '../orders/OrderWidget';
+import OrderWidget from '../orders/OrderWidgetContainer';
 
 const Portfolio = ({ portfolio, users, currentUser }) => {
-    const cashBalance = users[currentUser] ? users[currentUser].cashBalance : 0;
     const totalPosition = Object.values(portfolio).reduce((total, item) => total + item.value, 0);
     return (
       <div style={{ margin: 24 }}>
@@ -44,7 +43,7 @@ const Portfolio = ({ portfolio, users, currentUser }) => {
           </Paper>
         </Grid>
         <Grid item xs>
-          <OrderWidget cashBalance={cashBalance} />
+          <OrderWidget />
         </Grid>
       </Grid>
       </div>

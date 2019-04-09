@@ -17,14 +17,14 @@ class OrderWidget extends Component {
   state = {
     symbol: '',
     quantity: '',
-    buySell: 'buy',
+    buy_sell: 'buy',
   }
 
   update = field => e => this.setState({ [field]: e.target.value }); 
 
   handleSubmit = e => {
     e.preventDefault();
-    this.props.postOrder(this.state);
+    this.props.postTransaction(this.state);
   }
 
   render() {
@@ -48,8 +48,8 @@ class OrderWidget extends Component {
                 row
                 aria-label="Buy/Sell"
                 name="buySell"
-                value={this.state.buySell}
-                onChange={this.update("buySell")}
+                value={this.state.buy_sell}
+                onChange={this.update("buy_sell")}
               >
                 <FormControlLabel value="buy" control={<Radio />} label="Buy" />
                 <FormControlLabel value="sell" disabled control={<Radio />} label="Sell" />
