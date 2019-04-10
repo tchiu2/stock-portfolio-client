@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Divider from '@material-ui/core/Divider';
 import FormControl from '@material-ui/core/FormControl';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormHelperText from '@material-ui/core/FormHelperText';
@@ -13,7 +12,7 @@ import RadioGroup from '@material-ui/core/RadioGroup';
 import Typography from '@material-ui/core/Typography';
 
 import { formatCurrency } from '../../util/format_util';
-import Button from '../shared/Button';
+import OrderConfirmDialog from './OrderConfirmDialog';
 
 class OrderWidget extends Component {
   state = {
@@ -51,11 +50,20 @@ class OrderWidget extends Component {
         <Grid container direction="column">
           <Grid item>
             <Typography 
-              variant="h5" 
+              variant="h4"
               align="left"
               gutterBottom
             >
-              Place an order | Balance: {formatCurrency(cashBalance)}
+              Place an order
+            </Typography>
+          </Grid>
+          <Grid item>
+            <Typography
+              variant="h5"
+              align="left"
+              gutterBottom
+            >
+              Balance: {formatCurrency(cashBalance)}
             </Typography>
           </Grid>
           <Grid item>
@@ -102,15 +110,10 @@ class OrderWidget extends Component {
           </Grid>
           {this.renderErrors("balance")}
           <Grid item>
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              color="primary"
-              onClick={this.handleSubmit}
-            >
-              Place order
-            </Button>
+            <OrderConfirmDialog
+              handleSubmit={this.handleSubmit}
+              {...this.state}
+            />
           </Grid>
         </Grid>
       </Paper>

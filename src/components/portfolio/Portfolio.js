@@ -15,7 +15,7 @@ const Portfolio = ({ portfolio, users, currentUser }) => {
     return (
       <div style={{ margin: 24 }}>
       <Grid container spacing={32}>
-        <Grid item xs={8}>
+        <Grid item xs={9}>
           <Paper style={{ padding: 24 }}>
             <Typography variant="h4" align="left">Portfolio | {formatCurrency(totalPosition)}</Typography>
             <Table>
