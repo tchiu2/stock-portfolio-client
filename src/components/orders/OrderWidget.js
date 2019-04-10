@@ -5,6 +5,7 @@ import FormHelperText from '@material-ui/core/FormHelperText';
 import FormLabel from '@material-ui/core/FormLabel';
 import Grid from '@material-ui/core/Grid';
 import Input from '@material-ui/core/Input';
+import InputAdornment from '@material-ui/core/InputAdornment';
 import InputLabel from '@material-ui/core/InputLabel';
 import Paper from '@material-ui/core/Paper';
 import Radio from '@material-ui/core/Radio';
@@ -19,7 +20,8 @@ class OrderWidget extends Component {
     symbol: '',
     quantity: '',
     buy_sell: 'buy',
-  }
+    price: '',
+  };
 
   componentWillUnmount() {
     this.props.clearTransactionErrors();
@@ -30,7 +32,23 @@ class OrderWidget extends Component {
   handleSubmit = e => {
     e.preventDefault();
     this.props.postTransaction(this.state);
-  }
+  };
+
+  fetchPrice = () => {
+    if (this.state.symbol.length === 0) {
+      return this.setState({ price: '' });
+    }
+
+    this.setState({ price: "Fetching price info..." }, () =>
+      fetch(`https://api.iextrading.com/1.0/stock/${this.state.symbol}/price`)
+        .then(res => {
+          if (!res.ok) { throw res }
+          return res.json();
+        })
+        .then(price => this.setState({ price: price.toFixed(2) }))
+        .catch(err => err.text().then(message => this.setState({ price: message })))
+    );
+  };
 
   renderErrors = key => {
     if (this.props.errors[key]) {
@@ -41,7 +59,7 @@ class OrderWidget extends Component {
         </FormHelperText>
       );
     }
-  }
+  };
 
   render() {
     const { cashBalance } = this.props;
@@ -89,6 +107,7 @@ class OrderWidget extends Component {
                 required
                 value={this.state.symbol} 
                 onChange={this.update("symbol")}
+                onBlur={this.fetchPrice}
               />
             </FormControl>
             {this.renderErrors("stock")}
@@ -104,6 +123,18 @@ class OrderWidget extends Component {
                 pattern="\d+"
                 value={this.state.quantity} 
                 onChange={this.update("quantity")}
+              />
+            </FormControl>
+            {this.renderErrors("quantity")}
+          </Grid>
+          <Grid item>
+            <FormControl margin="dense" fullWidth>
+              <InputLabel htmlFor="price">Estimated Share Price</InputLabel>
+              <Input name="price"
+                type="text"
+                disabled
+                value={this.state.price}
+                startAdornment={<InputAdornment position="start">$</InputAdornment>}
               />
             </FormControl>
             {this.renderErrors("quantity")}

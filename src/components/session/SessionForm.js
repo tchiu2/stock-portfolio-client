@@ -8,9 +8,9 @@ import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import Link from '@material-ui/core/Link';
 import Paper from '@material-ui/core/Paper';
+import Typography from '@material-ui/core/Typography';
 
 import Button from '../shared/Button';
-import Heading from '../shared/Heading';
 
 const FormContainer = styled.main`
   margin: auto;
@@ -57,9 +57,9 @@ class SessionForm extends Component {
         <Paper>
           <Grid container direction='column' spacing={16}>
             <Grid item>
-              <Heading component="h1" variant="h5">
+              <Typography align="center" style={{ paddingTop: '1em' }} component="h1" variant="h5">
                 {this.props.formType === 'login' ? "Sign in" : "Register"}
-              </Heading>
+              </Typography>
             </Grid>
             <Form>
               <Grid container direction='column' spacing={8}>
