@@ -5,7 +5,6 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import Divider from '@material-ui/core/Divider';
 import Typography from '@material-ui/core/Typography';
 
 class OrderConfirmDialog extends Component {
@@ -47,9 +46,9 @@ class OrderConfirmDialog extends Component {
           open={this.state.open}
           onClose={this.handleClose}
         >
-          <DialogTitle id="alert-dialog-title">{"Confirm order"}</DialogTitle>
+          <DialogTitle>{"Confirm order"}</DialogTitle>
           <DialogContent>
-            <DialogContentText id="alert-dialog-description">
+            <DialogContentText component="div">
               <Typography variant="subtitle1">Type: {buy_sell.toUpperCase()}</Typography>
               <Typography variant="subtitle1">Symbol: {symbol}</Typography>
               <Typography variant="subtitle1">Quantity: {quantity} shares</Typography>

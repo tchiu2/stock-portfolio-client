@@ -23,8 +23,9 @@ const Portfolio = ({ portfolio, users, currentUser }) => {
                 <PortfolioRow
                   symbol="Symbol"
                   name="Company Name"
-                  shares="Shares"
-                  value="Total Position"
+                  shares="Owned Shares"
+                  value="Position Value"
+                  change="Day Change"
                 />
               </TableHead>
               <TableBody>
@@ -35,6 +36,8 @@ const Portfolio = ({ portfolio, users, currentUser }) => {
                     name={data.name}
                     shares={data.shares}
                     value={data.value}
+                    change={data.change}
+                    changePct={data.changePct}
                   />
                 )}
               </TableBody>
