@@ -2,12 +2,12 @@ import React from 'react';
 import TableRow from '@material-ui/core/TableRow';
 import TableCell from '../shared/TableCell';
 
-import { formatCurrency } from '../../util/format_util';
+import { formatCurrency, formatDate } from '../../util/format_util';
 
 const TransactionRow = ({ date, symbol, buySell, quantity, price, total }) => (
   <TableRow>
     <TableCell component="th" scope="row">
-      {date}
+      {formatDate(date)}
     </TableCell>
     <TableCell align="left">{symbol}</TableCell>
     <TableCell align="left">{buySell}</TableCell>

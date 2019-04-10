@@ -2,7 +2,7 @@ import React from 'react';
 import TableRow from '@material-ui/core/TableRow';
 import TableCell from '../shared/TableCell';
 
-import { formatCurrency } from '../../util/format_util';
+import { formatCurrency, formatPriceChange } from '../../util/format_util';
 
 const styles = {
   cell: {
@@ -45,7 +45,7 @@ const PortfolioRow = ({ symbol, name, shares, value, change, changePct }) => (
         ...(change > 0 ? styles.cellGreen : (change < 0 ? styles.cellRed : {}))
       }}
     >
-      {`${change > 0 ? "+" : ""}${change} (${changePct ? (Math.abs(changePct) * 100).toFixed(2) : ""}%)`}
+      {formatPriceChange(change, changePct)}
     </TableCell>
   </TableRow>
 );
