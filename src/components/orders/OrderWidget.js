@@ -137,7 +137,6 @@ class OrderWidget extends Component {
                 startAdornment={<InputAdornment position="start">$</InputAdornment>}
               />
             </FormControl>
-            {this.renderErrors("quantity")}
           </Grid>
           {this.renderErrors("balance")}
           <Grid item>

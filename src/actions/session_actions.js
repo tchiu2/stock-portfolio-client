@@ -43,5 +43,5 @@ export const logout = () => dispatch => (
 
 export const fetchUser = userId => dispatch => (
   APIUtil.fetchUser(userId)
-    .then(({ user }) => dispatch(receiveCurrentUser(user)))
+    .then(user => dispatch(receiveCurrentUser(user)))
 );
