@@ -15,7 +15,7 @@ const styles = {
   },
 }
 
-const PortfolioRow = ({ symbol, name, shares, value, change, changePct }) => (
+const PortfolioRow = ({ symbol, name, shares, price, value, change, changePct }) => (
   <TableRow>
     <TableCell 
       component="th"
@@ -36,7 +36,7 @@ const PortfolioRow = ({ symbol, name, shares, value, change, changePct }) => (
         ...(change > 0 ? styles.cellGreen : (change < 0 ? styles.cellRed : {}))
       }}
     >
-      {formatCurrency(value)}
+      {formatCurrency(price)}
     </TableCell>
     <TableCell
       align="right"
@@ -46,6 +46,15 @@ const PortfolioRow = ({ symbol, name, shares, value, change, changePct }) => (
       }}
     >
       {formatPriceChange(change, changePct)}
+    </TableCell>
+    <TableCell
+      align="right"
+      style={{
+        ...styles.cell,
+        ...(change > 0 ? styles.cellGreen : (change < 0 ? styles.cellRed : {}))
+      }}
+    >
+      {formatCurrency(value)}
     </TableCell>
   </TableRow>
 );

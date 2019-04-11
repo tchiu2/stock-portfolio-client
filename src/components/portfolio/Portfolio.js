@@ -30,20 +30,22 @@ const Portfolio = ({ portfolio, loading, users, currentUser }) => {
                         symbol="Symbol"
                         name="Company Name"
                         shares="Owned Shares"
+                        price="Latest Price"
                         value="Position Value"
                         change="Day Change"
                       />
                     </TableHead>
                     <TableBody>
-                      {Object.entries(portfolio).map(([symbol, data]) =>
+                      {Object.values(portfolio).map(position =>
                         <PortfolioRow
-                          key={symbol}
-                          symbol={symbol}
-                          name={data.name}
-                          shares={data.shares}
-                          value={data.value}
-                          change={data.change}
-                          changePct={data.changePct}
+                          key={position.symbol}
+                          symbol={position.symbol}
+                          name={position.name}
+                          shares={position.shares}
+                          price={position.price}
+                          value={position.value}
+                          change={position.change}
+                          changePct={position.changePct}
                         />
                       )}
                     </TableBody>

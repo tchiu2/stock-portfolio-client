@@ -10,13 +10,14 @@ import Typography from '@material-ui/core/Typography';
 import TransactionRow from './TransactionRow';
 
 const Transactions = ({ transactions, loading }) => (
-  <Paper style={{ padding: 24, margin: 24, overflow: 'hidden' }}>
-    <Grid container>
-      {loading
-        ? (
-          <CircularProgress />
-        ) : (
-          <Grid item xs={12}>
+  <Grid container>
+    <Grid item xs={12}>
+      <Paper style={{ padding: 24, margin: 24, overflow: 'hidden' }}>
+        {loading
+          ? (
+            <CircularProgress />
+          ) : (
+            <>
             <Typography variant="h4" align="left">Transactions</Typography>
             <Table>
               <TableHead>
@@ -43,11 +44,12 @@ const Transactions = ({ transactions, loading }) => (
                 )}
               </TableBody>
             </Table>
-          </Grid>
-        )
-      }
+            </>
+          )
+        }
+      </Paper>
     </Grid>
-  </Paper>
+  </Grid>
 );
 
 export default Transactions;
