@@ -34,6 +34,12 @@ export const getResource = (resource, id, nestedResource = "") =>
     headers: setHeaders(true),
   }).then(responseHandler);
 
+export const getResources = (resource, query) =>
+  fetch(`${baseURL}/${resource}?${query}`, {
+    method: "GET",
+    headers: setHeaders(true),
+  }).then(responseHandler);
+
 export const postTransaction = (body = {}) =>
   fetch(`${baseURL}/transactions`, {
     method: "POST",

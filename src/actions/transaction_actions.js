@@ -26,7 +26,7 @@ export const clearTransactionErrors = () => ({
 
 export const fetchTransactions = userId => dispatch => (
   APIUtil.fetchTransactions(userId)
-    .then(({ transactions }) => dispatch(receiveTransactions(transactions)))
+    .then(transactions => dispatch(receiveTransactions(transactions)))
 );
 
 export const postTransaction = transaction => dispatch => (

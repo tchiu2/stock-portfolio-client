@@ -14,6 +14,7 @@ import Typography from '@material-ui/core/Typography';
 
 import { formatCurrency } from '../../util/format_util';
 import OrderConfirmDialog from './OrderConfirmDialog';
+import SymbolSelect from './SymbolSelect';
 
 class OrderWidget extends Component {
   state = {
@@ -21,13 +22,20 @@ class OrderWidget extends Component {
     quantity: '',
     buy_sell: 'buy',
     price: '',
+    inputValue: '',
   };
 
   componentWillUnmount() {
     this.props.clearTransactionErrors();
   }
 
-  update = field => e => this.setState({ [field]: e.target.value }); 
+  update = field => e => this.setState({
+    [field]: e === null
+      ? ""
+      : field === "symbol"
+        ? e.value
+        : e.target.value
+  });
 
   handleSubmit = e => {
     e.preventDefault();
@@ -101,12 +109,8 @@ class OrderWidget extends Component {
           </Grid>
           <Grid item>
             <FormControl margin="dense" required fullWidth>
-              <InputLabel htmlFor="symbol">Symbol</InputLabel>
-              <Input name="symbol" 
-                type="text" 
-                required
-                value={this.state.symbol} 
-                onChange={this.update("symbol")}
+              <SymbolSelect
+                onChange={this.update("symbol").bind(this)}
                 onBlur={this.fetchPrice}
               />
             </FormControl>
