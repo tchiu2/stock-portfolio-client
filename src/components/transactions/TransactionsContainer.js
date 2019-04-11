@@ -14,7 +14,8 @@ class TransactionsContainer extends Component {
 }
 
 const msp = ({ entities: { transactions }, session: { currentUser } }) => ({
-  transactions,
+  transactions: transactions.history,
+  loading: transactions.loading,
   currentUser
 });
 

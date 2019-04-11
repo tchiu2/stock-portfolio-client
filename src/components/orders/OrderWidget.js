@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import FormControl from '@material-ui/core/FormControl';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormHelperText from '@material-ui/core/FormHelperText';
@@ -22,7 +23,6 @@ class OrderWidget extends Component {
     quantity: '',
     buy_sell: 'buy',
     price: '',
-    inputValue: '',
   };
 
   componentWillUnmount() {
@@ -89,7 +89,13 @@ class OrderWidget extends Component {
               align="left"
               gutterBottom
             >
-              Balance: {formatCurrency(cashBalance)}
+            {cashBalance
+              ? (
+                `Balance: ${formatCurrency(cashBalance)}`
+              ) : (
+                <CircularProgress />
+              )
+            }
             </Typography>
           </Grid>
           <Grid item>

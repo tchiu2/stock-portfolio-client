@@ -6,7 +6,7 @@ import {
 } from '../../actions/transaction_actions';
 
 const msp = ({ entities: { users }, session: { currentUser }, errors: { transaction } }) => ({
-  cashBalance: users[currentUser] ? users[currentUser].cashBalance : 0,
+  cashBalance: users[currentUser] ? users[currentUser].cashBalance : null,
   errors: transaction,
 });
 

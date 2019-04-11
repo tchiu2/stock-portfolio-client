@@ -1,9 +1,11 @@
+import { combineReducers } from 'redux';
 import { 
   RECEIVE_TRANSACTIONS, 
   RECEIVE_TRANSACTION,
+  REQUEST_TRANSACTIONS,
 } from '../actions/transaction_actions';
 
-export default (state = {}, action) => {
+const history = (state = {}, action) => {
   Object.freeze(state);
   switch (action.type) {
     case RECEIVE_TRANSACTIONS:
@@ -17,3 +19,20 @@ export default (state = {}, action) => {
       return state;
   }
 };
+
+const loading = (state = false, action) => {
+  Object.freeze(state);
+  switch (action.type) {
+    case REQUEST_TRANSACTIONS:
+      return true;
+    case RECEIVE_TRANSACTIONS:
+      return false;
+    default:
+      return state;
+  }
+};
+
+export default combineReducers({
+  history,
+  loading,
+});

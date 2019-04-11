@@ -26,6 +26,7 @@ class OrderConfirmDialog extends Component {
     e.preventDefault();
     this.props.handleSubmit(e);
     this.handleClose(e);
+    setTimeout(() => window.location.reload(), 750);
   };
 
   render() {

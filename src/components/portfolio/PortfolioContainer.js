@@ -14,7 +14,8 @@ class PortfolioContainer extends Component {
 }
 
 const msp = ({ entities: { users, portfolio }, session: { currentUser } }) => ({
-  portfolio,
+  portfolio: portfolio.positions,
+  loading: portfolio.loading,
   users,
   currentUser,
 });
