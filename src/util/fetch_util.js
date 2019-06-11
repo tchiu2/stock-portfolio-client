@@ -7,7 +7,7 @@ const responseHandler = res => {
   return res.json();
 }
 
-const setHeaders = (withAuth) => {
+const setHeaders = withAuth => {
   const headers = new Headers();
   headers.append("Content-Type", "application/json");
   headers.append("Accept", "application/json");

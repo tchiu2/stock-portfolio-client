@@ -14,6 +14,7 @@ import RadioGroup from '@material-ui/core/RadioGroup';
 import Typography from '@material-ui/core/Typography';
 
 import { formatCurrency } from '../../util/format_util';
+import { fetchPrice } from '../../util/transaction_api_util';
 import OrderConfirmDialog from './OrderConfirmDialog';
 import SymbolSelect from './SymbolSelect';
 
@@ -48,11 +49,7 @@ class OrderWidget extends Component {
     }
 
     this.setState({ price: "Fetching price info..." }, () =>
-      fetch(`https://api.iextrading.com/1.0/stock/${this.state.symbol}/price`)
-        .then(res => {
-          if (!res.ok) { throw res }
-          return res.json();
-        })
+      fetchPrice(this.state.symbol)
         .then(price => this.setState({ price: price.toFixed(2) }))
         .catch(err => err.text().then(message => this.setState({ price: message })))
     );
