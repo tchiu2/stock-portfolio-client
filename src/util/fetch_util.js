@@ -1,4 +1,4 @@
-const baseURL = "http://localhost:3001";
+const baseURL = process.env.SERVER_URL;
 
 const responseHandler = res => {
   if (!res.ok) return res.json().then(err => { throw err });
