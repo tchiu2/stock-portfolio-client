@@ -1,4 +1,4 @@
-const baseURL = process.env.SERVER_URL;
+const baseURL = process.env.REACT_APP_SERVER_URL;
 
 const responseHandler = res => {
   if (!res.ok) return res.json().then(err => { throw err });
