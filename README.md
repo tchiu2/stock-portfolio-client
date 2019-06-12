@@ -13,13 +13,13 @@ Some features to note:
 
 ## Setup
 To run the client locally:
-1. Clone this repo.
-2. Run ```npm install```.
-3. Setup environment variables.  
-   1. Create a ```.env``` file in the root directory.
-   2. Add with the key ```REACT_API_SERVER_URL``` pointing to the appropriate API server. 
+1. Clone this repo
+2. Run ```npm install```
+3. Setup environment variables
+   1. Create a ```.env``` file in the root directory
+   2. Add with the key ```REACT_API_SERVER_URL``` pointing to the appropriate API server
   
-   Refer to the ```create-react-app``` [docs](https://facebook.github.io/create-react-app/docs/deployment) for more details.
-4. Run ```npm start```.
+   Refer to the ```create-react-app``` [docs](https://facebook.github.io/create-react-app/docs/deployment) for more details
+4. Run ```npm start```
 
-You will need backend server to hookup the client to, so check out the corresponding [API server](https://github.com/tchiu2/stock-portfolio-server)!
+You will need a backend server to hookup the client to, so check out the corresponding [API server](https://github.com/tchiu2/stock-portfolio-server)!
