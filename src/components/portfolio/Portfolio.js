@@ -15,7 +15,7 @@ const Portfolio = ({ portfolio, loading, users, currentUser }) => {
     const totalPosition = Object.values(portfolio).reduce((total, item) => total + item.value, 0);
     return (
       <div style={{ margin: 24 }}>
-        <Grid container spacing={32}>
+        <Grid container spacing={3}>
           <Grid item xs={9}>
             <Paper style={{ padding: 24 }}>
               {loading

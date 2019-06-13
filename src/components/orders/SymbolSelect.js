@@ -19,7 +19,7 @@ const NoOptionsMessage = props =>
 	</Typography>
 
 const inputComponent = ({ inputRef, ...props }) =>
-	<div style={{ display: 'flex', padding: 0 }} ref={inputRef} {...props} />
+	<div style={{ display: 'flex', padding: '8px 0px' }} ref={inputRef} {...props} />
 
 const Control = props =>
 	<TextField

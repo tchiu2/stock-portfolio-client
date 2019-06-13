@@ -55,14 +55,14 @@ class SessionForm extends Component {
     return (
       <FormContainer> 
         <Paper>
-          <Grid container direction='column' spacing={16}>
+          <Grid container direction='column' spacing={2}>
             <Grid item>
               <Typography align="center" style={{ paddingTop: '1em' }} component="h1" variant="h5">
                 {this.props.formType === 'login' ? "Sign in" : "Register"}
               </Typography>
             </Grid>
             <Form>
-              <Grid container direction='column' spacing={8}>
+              <Grid container direction='column' spacing={1}>
                 {this.props.formType === 'signup' && 
                   <Grid item>
                     <FormControl margin="normal" required fullWidth>
