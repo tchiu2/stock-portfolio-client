@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import AsyncSelect from 'react-select/lib/Async';
-import MenuItem from '@material-ui/core/MenuItem';
-import Paper from '@material-ui/core/Paper';
-import TextField from '@material-ui/core/TextField';
-import Typography from '@material-ui/core/Typography';
+import {
+  MenuItem,
+  Paper,
+  TextField,
+  Typography,
+} from '@material-ui/core';
 
 import { fetchStocks } from '../../util/stock_api_util';
 

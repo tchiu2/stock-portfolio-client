@@ -2,7 +2,7 @@ import React from 'react';
 import { StylesProvider } from '@material-ui/styles';
 import { Provider } from 'react-redux';
 import { Switch, HashRouter } from 'react-router-dom';
-import CssBaseline from '@material-ui/core/CssBaseline';
+import { CssBaseline } from '@material-ui/core';
 
 import { AuthRoute, ProtectedRoute } from '../util/route_util';
 import Login from './session/LoginContainer';

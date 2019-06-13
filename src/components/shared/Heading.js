@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import Typography from '@material-ui/core/Typography';
+import { Typography } from '@material-ui/core';
 
 const Heading = styled(Typography)`
   padding-top: 0.7em;

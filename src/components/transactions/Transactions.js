@@ -1,11 +1,13 @@
 import React from 'react';
-import CircularProgress from '@material-ui/core/CircularProgress';
-import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
-import Table from '@material-ui/core/Table';
-import TableHead from '@material-ui/core/TableHead';
-import TableBody from '@material-ui/core/TableBody';
-import Typography from '@material-ui/core/Typography';
+import {
+  CircularProgress,
+  Grid,
+  Paper,
+  Table,
+  TableHead,
+  TableBody,
+  Typography,
+} from '@material-ui/core';
 
 import TransactionRow from './TransactionRow';
 

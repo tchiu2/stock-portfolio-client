@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import styled from 'styled-components';
-import AppBar from '@material-ui/core/AppBar';
-import Avatar from '@material-ui/core/Avatar';
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
-import Toolbar from '@material-ui/core/Toolbar';
+import {
+  AppBar,
+  Avatar,
+  Menu,
+  MenuItem,
+  Tabs,
+  Tab,
+  Toolbar,
+} from '@material-ui/core';
 
 const TabsContainer = styled(Tabs)`
   flex-grow: 1;

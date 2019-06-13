@@ -1,5 +1,5 @@
 import React from 'react';
-import TableRow from '@material-ui/core/TableRow';
+import { TableRow } from '@material-ui/core';
 import TableCell from '../shared/TableCell';
 
 import { formatCurrency, formatDate } from '../../util/format_util';

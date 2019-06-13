@@ -1,5 +1,5 @@
 import { withStyles } from '@material-ui/core/styles';
-import TableCell from '@material-ui/core/TableCell';
+import { TableCell } from '@material-ui/core';
 
 export default withStyles(theme => ({
   head: {

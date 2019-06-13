@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 import styled from 'styled-components';
-import FormControl from '@material-ui/core/FormControl';
-import FormHelperText from '@material-ui/core/FormHelperText';
-import Grid from '@material-ui/core/Grid';
-import Input from '@material-ui/core/Input';
-import InputLabel from '@material-ui/core/InputLabel';
-import Link from '@material-ui/core/Link';
-import Paper from '@material-ui/core/Paper';
-import Typography from '@material-ui/core/Typography';
+import {
+  FormControl,
+  FormHelperText,
+  Grid,
+  Input,
+  InputLabel,
+  Link,
+  Paper,
+  Typography,
+} from '@material-ui/core';
 
 import Button from '../shared/Button';
 
