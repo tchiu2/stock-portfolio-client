@@ -15,17 +15,14 @@ class OrderConfirmDialog extends Component {
   };
 
   handleClickOpen = e => {
-    e.preventDefault();
     this.setState({ open: true });
   };
 
   handleClose = e => {
-    e.preventDefault();
     this.setState({ open: false });
   };
 
   handleConfirm = e => {
-    e.preventDefault();
     this.props.handleSubmit(e);
     this.handleClose(e);
   };

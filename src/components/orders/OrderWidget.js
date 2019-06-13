@@ -20,13 +20,15 @@ import { fetchPrice } from '../../util/transaction_api_util';
 import OrderConfirmDialog from './OrderConfirmDialog';
 import SymbolSelect from './SymbolSelect';
 
+const initialState = {
+  symbol: '',
+  quantity: '',
+  buy_sell: 'buy',
+  price: '',
+};
+
 class OrderWidget extends Component {
-  state = {
-    symbol: '',
-    quantity: '',
-    buy_sell: 'buy',
-    price: '',
-  };
+  state = initialState;
 
   componentWillUnmount() {
     this.props.clearTransactionErrors();
@@ -41,8 +43,8 @@ class OrderWidget extends Component {
   });
 
   handleSubmit = e => {
-    e.preventDefault();
-    this.props.postTransaction(this.state);
+    this.props.postTransaction(this.state)
+      .then(() => this.setState(initialState, () => this.props.fetchPortfolio()));
   };
 
   fetchPrice = () => {

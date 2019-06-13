@@ -5,7 +5,8 @@ export const REQUEST_PORTFOLIO = "REQUEST_PORTFOLIO";
 
 const requestPortfolio = () => ({
 	type: REQUEST_PORTFOLIO,
-})
+});
+
 const receivePortfolio = portfolio => ({
   type: RECEIVE_PORTFOLIO,
   portfolio,

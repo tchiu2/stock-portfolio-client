@@ -52,7 +52,7 @@ class Navbar extends Component {
   render() {
     const { users, currentUser } = this.props;
     const { loggedIn, anchorEl, value } = this.state;
-    const name = users[currentUser] ? users[currentUser].name : "";
+    const name = users[currentUser] ? users[currentUser].name.toUpperCase() : "";
     const open = Boolean(anchorEl);
 
     return (

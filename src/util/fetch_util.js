@@ -22,10 +22,11 @@ export const postSession = (url, body = {}) =>
   }).then(responseHandler);
 
 export const deleteSession = () => {
-  sessionStorage.removeItem('jwt');
   return fetch(`${baseURL}/logout`, {
     method: "DELETE",
-  }).then(responseHandler);
+    headers: setHeaders(true),
+  }).then(responseHandler)
+    .then(() => sessionStorage.removeItem('jwt'));
 }
 
 export const getResource = (resource, id, nestedResource = "") =>

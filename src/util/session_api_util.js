@@ -1,7 +1,8 @@
 import { 
   postSession, 
   deleteSession,
-  getResource } from './fetch_util';
+  getResource
+} from './fetch_util';
 
 export const login = user => postSession('login', user);
 

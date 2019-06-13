@@ -13,7 +13,7 @@ import { formatCurrency } from '../../util/format_util';
 import PortfolioRow from './PortfolioRow';
 import OrderWidget from '../orders/OrderWidgetContainer';
 
-const Portfolio = ({ portfolio, loading, users, currentUser }) => {
+const Portfolio = ({ portfolio, loading, users, currentUser, fetchPortfolio }) => {
     const totalPosition = Object.values(portfolio).reduce((total, item) => total + item.value, 0);
     return (
       <div style={{ margin: 24 }}>
@@ -58,7 +58,7 @@ const Portfolio = ({ portfolio, loading, users, currentUser }) => {
             </Paper>
           </Grid>
           <Grid item xs>
-            <OrderWidget />
+            <OrderWidget fetchPortfolio={() => fetchPortfolio(currentUser)}/>
           </Grid>
         </Grid>
       </div>
