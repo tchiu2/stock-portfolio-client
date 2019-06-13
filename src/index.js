@@ -20,8 +20,6 @@ if (sessionStorage.jwt) {
   store = configureStore();
 }
 
-window.getState = store.getState;
-
 ReactDOM.render(<App store={ store } />, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change

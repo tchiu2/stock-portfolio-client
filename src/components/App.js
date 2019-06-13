@@ -1,7 +1,5 @@
 import React from 'react';
-import JssProvider from 'react-jss/lib/JssProvider';
-import { create } from 'jss';
-import { createGenerateClassName, jssPreset } from '@material-ui/core/styles';
+import { StylesProvider } from '@material-ui/styles';
 import { Provider } from 'react-redux';
 import { Switch, HashRouter } from 'react-router-dom';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -11,14 +9,8 @@ import Login from './session/LoginContainer';
 import Register from './session/RegisterContainer';
 import Main from './Main';
 
-const generateClassName = createGenerateClassName();
-const jss = create({
-  ...jssPreset(),
-  insertionPoint: document.getElementById('jss-insertion-point'),
-});
-
 const App = ({ store }) => (      
-  <JssProvider jss={jss} generateClassName={generateClassName}>
+  <StylesProvider injectFirst>
     <Provider store={store}>
       <HashRouter>
         <CssBaseline />
@@ -31,7 +23,7 @@ const App = ({ store }) => (
         </div>
       </HashRouter>
     </Provider>
-  </JssProvider>
+  </StylesProvider>
 );
 
 export default App;

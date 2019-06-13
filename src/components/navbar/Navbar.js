@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { NavLink, withRouter } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import styled from 'styled-components';
 import AppBar from '@material-ui/core/AppBar';
 import Avatar from '@material-ui/core/Avatar';
@@ -8,8 +8,6 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Toolbar from '@material-ui/core/Toolbar';
-
-import Button from '../shared/Button';
 
 const TabsContainer = styled(Tabs)`
   flex-grow: 1;
@@ -22,6 +20,8 @@ const UserInfoItem = styled(MenuItem)`
 const RightNavLinks = styled.div`
   padding-right: 16px;
 `;
+
+const AdapterLink = React.forwardRef((props, ref) => <Link innerRef={ref} {...props} />);
 
 class Navbar extends Component {
   state = {
@@ -38,22 +38,12 @@ class Navbar extends Component {
 
   handleChange = (e, value) => this.setState({ value });
 
-  handleClick = action => e => {
-    e.preventDefault();
+  handleClick = e => {
     this.handleClose(e);
-    switch(action) {
-      case 'login':
-        return this.props.history.push('/login');
-      case 'signup':
-        return this.props.history.push('/register');
-      case 'logout':
-        return this.props.logout();
-      default:
-        return;
-    }
+    this.props.logout();
   };
 
-  handleClose = e => this.setState({ anchorEl: null });
+  handleClose = () => this.setState({ anchorEl: null });
 
   handleMenu = e => this.setState({ anchorEl: e.currentTarget });
 
@@ -72,10 +62,10 @@ class Navbar extends Component {
             value={value} 
             onChange={this.handleChange}
           >
-            <Tab label="Portfolio" component={NavLink} to="/portfolio" selected />
-            <Tab label="Transactions" component={NavLink} to="/transactions" />
+            <Tab label="Portfolio" component={AdapterLink} to="/portfolio" selected />
+            <Tab label="Transactions" component={AdapterLink} to="/transactions" />
           </TabsContainer>
-          {loggedIn ? (
+          {loggedIn && (
             <RightNavLinks>
               <Avatar 
                 children={name[0]} 
@@ -96,13 +86,8 @@ class Navbar extends Component {
 								onClose={this.handleClose}
 							>
                 <UserInfoItem disabled>{name}</UserInfoItem>
-								<MenuItem onClick={this.handleClick("logout")}>Logout</MenuItem>
+								<MenuItem onClick={this.handleClick}>Logout</MenuItem>
 							</Menu>
-            </RightNavLinks>
-          ) : (
-            <RightNavLinks>
-              <Button onClick={this.handleClick('login')} color="primary">Login</Button>
-              <Button onClick={this.handleClick('signup')} color="primary">Signup</Button>
             </RightNavLinks>
           )}
 
