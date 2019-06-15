@@ -113,7 +113,7 @@ export default class SymbolSelect extends Component {
       .then(stocks =>
         stocks.map(stock => ({
           value: stock.symbol,
-          label: stock.symbol,
+          label: `${stock.symbol}: ${stock.name}`,
         }))
       );
 
@@ -127,12 +127,14 @@ export default class SymbolSelect extends Component {
             }
         }}
         cacheOptions
-        defaultOptions
+        defaultOptions={[]}
         loadOptions={this.getOptions}
         components={components}
         placeholder="Search by symbol"
         {...this.props}
         isClearable
+        backspaceRemovesValue
+        noOptionsMessage={() => "No symbols found"}
       />
     );
   }
