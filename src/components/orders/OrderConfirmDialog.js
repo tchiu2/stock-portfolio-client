@@ -40,6 +40,7 @@ class OrderConfirmDialog extends Component {
           color="primary"
           onClick={this.handleClickOpen}
           style={{ marginTop: 24 }}
+          disabled={quantity === "" || symbol === ""}
         >
           Place order 
         </Button>
