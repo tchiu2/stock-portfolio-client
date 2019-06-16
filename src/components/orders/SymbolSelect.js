@@ -10,15 +10,14 @@ import {
 import { fetchStocks } from '../../util/stock_api_util';
 
 const NoOptionsMessage = props =>
- <Typography
-		color="textSecondary"
-    style={{
-      paddingLeft: 4,
-    }}
+  <MenuItem
+		selected={false}
+		component="div"
+		style={{ fontWeight: 400 }}
 		{...props.innerProps}
 	>
 		{props.children}
-	</Typography>
+	</MenuItem>
 
 const inputComponent = ({ inputRef, ...props }) =>
 	<div style={{ display: 'flex', padding: '8px 0px' }} ref={inputRef} {...props} />
@@ -64,11 +63,11 @@ const Placeholder = props =>
   </Typography>
 
 const SingleValue = props =>
-	<Typography 
+  <Typography
     {...props.innerProps}
   >
 		{props.children}
-	</Typography>
+  </Typography>
 
 const ValueContainer = props =>
 	<div 
@@ -77,7 +76,6 @@ const ValueContainer = props =>
       flexWrap: 'wrap',
       flex: 1,
       alignItems: 'center',
-      overflow: 'hidden',
     }}
    >
     {props.children}
@@ -113,7 +111,8 @@ export default class SymbolSelect extends Component {
       .then(stocks =>
         stocks.map(stock => ({
           value: stock.symbol,
-          label: `${stock.symbol}: ${stock.name}`,
+          label: stock.symbol,
+          name: stock.name,
         }))
       );
 
@@ -122,9 +121,10 @@ export default class SymbolSelect extends Component {
       <AsyncSelect 
         textFieldProps={{
           label: 'Symbol',
-            InputLabelProps: {
-              shrink: true,
-            }
+          InputLabelProps: {
+            shrink: true,
+            required: true,
+          }
         }}
         cacheOptions
         defaultOptions={[]}

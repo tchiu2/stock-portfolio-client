@@ -22,6 +22,7 @@ import SymbolSelect from './SymbolSelect';
 
 const initialState = {
   symbol: '',
+  name: '',
   quantity: '',
   buy_sell: 'buy',
   price: '',
@@ -34,18 +35,42 @@ class OrderWidget extends Component {
     this.props.clearTransactionErrors();
   }
 
-  update = field => e => this.setState({
-    [field]: e === null
-      ? ""
-      : field === "symbol"
-        ? e.value
-        : e.target.value
-  });
+  update = field => e => {
+    return this.setState({
+      [field]: e.target.value
+    });
+  }
+
+  handleSelect = option =>
+    option === null
+      ? this.setState({ symbol: '', name: '' })
+      : this.setState({
+        symbol: option.value,
+        name: option.name
+      });
+
+  handleQuantityChange = e => {
+    const { value } = e.target;
+
+    if (value === "" || value.match(/^[1-9][0-9]*$/)) {
+      this.setState({ quantity: value });
+    }
+  };
 
   handleSubmit = e => {
-    this.props.postTransaction(this.state)
-      .then(() => this.setState(initialState, () => this.props.fetchPortfolio()));
-  };
+    const {
+      postTransaction,
+      fetchPortfolio,
+      fetchUser,
+      currentUser,
+    } = this.props;
+
+    postTransaction(this.state)
+      .then(() => this.setState(initialState, () => {
+				fetchPortfolio();
+				fetchUser(currentUser);
+			}));
+	};
 
   fetchPrice = () => {
     if (this.state.symbol.length === 0) {
@@ -115,9 +140,27 @@ class OrderWidget extends Component {
             </FormControl>
           </Grid>
           <Grid item>
+            <FormControl margin="dense" fullWidth>
+              <InputLabel shrink htmlFor="name">Company Name</InputLabel>
+              <Input name="price"
+                type="text"
+                disabled
+                value={this.state.name}
+              />
+            </FormControl>
+          </Grid>
+          <Grid item>
             <FormControl margin="dense" required fullWidth>
               <SymbolSelect
-                onChange={this.update("symbol").bind(this)}
+                value={
+                  this.state.symbol !== ""
+                  ? {
+                    value: this.state.symbol,
+                    label: this.state.symbol
+                    }
+                  : null
+                  }
+                onChange={this.handleSelect}
                 onBlur={this.fetchPrice}
               />
             </FormControl>
@@ -125,15 +168,16 @@ class OrderWidget extends Component {
           </Grid>
           <Grid item>
             <FormControl margin="dense" required fullWidth>
-              <InputLabel htmlFor="quantity">Quantity</InputLabel>
+              <InputLabel shrink htmlFor="quantity">Quantity</InputLabel>
               <Input name="quantity" 
-                type="number" 
                 required
-                min="0"
-                step="1"
-                pattern="\d+"
+                placeholder="Enter quantity"
                 value={this.state.quantity} 
-                onChange={this.update("quantity")}
+                onChange={this.handleQuantityChange}
+                inputProps={{
+                  min: "1",
+                  step: "1",
+                }}
               />
             </FormControl>
             {this.renderErrors("quantity")}

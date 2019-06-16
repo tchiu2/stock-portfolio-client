@@ -57,7 +57,7 @@ const Portfolio = ({ portfolio, loading, users, currentUser, fetchPortfolio }) =
               }
             </Paper>
           </Grid>
-          <Grid item xs>
+          <Grid item xs={3}>
             <OrderWidget fetchPortfolio={() => fetchPortfolio(currentUser)}/>
           </Grid>
         </Grid>

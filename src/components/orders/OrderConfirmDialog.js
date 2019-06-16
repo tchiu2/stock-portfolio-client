@@ -9,6 +9,8 @@ import {
   Typography,
 } from '@material-ui/core';
 
+import { formatCurrency } from '../../util/format_util';
+
 class OrderConfirmDialog extends Component {
   state = {
     open: false,
@@ -28,7 +30,7 @@ class OrderConfirmDialog extends Component {
   };
 
   render() {
-    const { buy_sell, quantity, symbol } = this.props;
+    const { buy_sell, quantity, symbol, price } = this.props;
     return (
       <div>
         <Button
@@ -45,12 +47,14 @@ class OrderConfirmDialog extends Component {
           open={this.state.open}
           onClose={this.handleClose}
         >
-          <DialogTitle>{"Confirm order"}</DialogTitle>
-          <DialogContent>
+          <DialogTitle>Confirm order</DialogTitle>
+          <DialogContent dividers>
             <DialogContentText component="div">
-              <Typography variant="subtitle1">Type: {buy_sell.toUpperCase()}</Typography>
-              <Typography variant="subtitle1">Symbol: {symbol}</Typography>
-              <Typography variant="subtitle1">Quantity: {quantity} shares</Typography>
+              <Typography color="primary" variant="h6">Details</Typography>
+              <Typography color="textPrimary" variant="subtitle1">Type: {buy_sell[0].toUpperCase() + buy_sell.slice(1)}</Typography>
+              <Typography color="textPrimary" variant="subtitle1">Symbol: {symbol}</Typography>
+              <Typography color="textPrimary" variant="subtitle1">{quantity} shares @ ${price}</Typography>
+              <Typography color="textPrimary" variant="subtitle1">Total: {formatCurrency(price * quantity)}</Typography>
             </DialogContentText>
           </DialogContent>
           <DialogActions>
