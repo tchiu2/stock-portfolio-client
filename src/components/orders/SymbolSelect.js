@@ -55,6 +55,7 @@ const Placeholder = props =>
     style={{
       position: 'absolute',
       left: 2,
+      bottom: 2,
       fontSize: 16,
     }}
     {...props.innerProps}
