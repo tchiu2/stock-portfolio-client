@@ -16,38 +16,35 @@ const Transactions = ({ transactions, loading }) => (
     <Grid item xs={12}>
       <Paper style={{ padding: 24, margin: 24, overflow: 'hidden' }}>
         {loading
-          ? (
-            <CircularProgress />
-          ) : (
-            <>
-            <Typography variant="h4" align="left">Transactions</Typography>
-            <Table>
-              <TableHead>
-                <TransactionRow
-                  date="Trade Date"
-                  symbol="Symbol"
-                  buySell="Buy/Sell"
-                  quantity="Quantity"
-                  price="Price"
-                  total="Total Transaction Amount"
-                />
-              </TableHead>
-              <TableBody>
-                {Object.values(transactions).map(txn =>
+          ? <CircularProgress />
+          : <>
+              <Typography variant="h4" align="left">Transactions</Typography>
+              <Table>
+                <TableHead>
                   <TransactionRow
-                    key={txn.id}
-                    date={txn.tradeDate}
-                    symbol={txn.symbol}
-                    buySell={txn.buySell}
-                    quantity={txn.quantity}
-                    price={txn.price}
-                    total={txn.quantity * txn.price}
+                    date="Trade Date"
+                    symbol="Symbol"
+                    buySell="Buy/Sell"
+                    quantity="Quantity"
+                    price="Price"
+                    total="Total Transaction Amount"
                   />
-                )}
-              </TableBody>
-            </Table>
+                </TableHead>
+                <TableBody>
+                  {Object.values(transactions).map(txn =>
+                    <TransactionRow
+                      key={txn.id}
+                      date={txn.tradeDate}
+                      symbol={txn.symbol}
+                      buySell={txn.buySell}
+                      quantity={txn.quantity}
+                      price={txn.price}
+                      total={txn.quantity * txn.price}
+                    />
+                  )}
+                </TableBody>
+              </Table>
             </>
-          )
         }
       </Paper>
     </Grid>

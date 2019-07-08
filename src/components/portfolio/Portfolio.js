@@ -21,39 +21,36 @@ const Portfolio = ({ portfolio, loading, users, currentUser, fetchPortfolio }) =
           <Grid item xs={9}>
             <Paper style={{ padding: 24 }}>
               {loading
-                ? (
-                  <CircularProgress />
-                ) : (
-                  <>
-                  <Typography variant="h4" align="left">Portfolio | {formatCurrency(totalPosition)}</Typography>
-                  <Table>
-                    <TableHead>
-                      <PortfolioRow
-                        symbol="Symbol"
-                        name="Company Name"
-                        shares="Owned Shares"
-                        price="Latest Price"
-                        value="Position Value"
-                        change="Day Change"
-                      />
-                    </TableHead>
-                    <TableBody>
-                      {Object.values(portfolio).map(position =>
+                ? <CircularProgress />
+                : <>
+                    <Typography variant="h4" align="left">Portfolio | {formatCurrency(totalPosition)}</Typography>
+                    <Table>
+                      <TableHead>
                         <PortfolioRow
-                          key={position.symbol}
-                          symbol={position.symbol}
-                          name={position.name}
-                          shares={position.shares}
-                          price={position.price}
-                          value={position.value}
-                          change={position.change}
-                          changePct={position.changePct}
+                          symbol="Symbol"
+                          name="Company Name"
+                          shares="Owned Shares"
+                          price="Latest Price"
+                          value="Position Value"
+                          change="Day Change"
                         />
-                      )}
-                    </TableBody>
-                  </Table>
+                      </TableHead>
+                      <TableBody>
+                        {Object.values(portfolio).map(position =>
+                          <PortfolioRow
+                            key={position.symbol}
+                            symbol={position.symbol}
+                            name={position.name}
+                            shares={position.shares}
+                            price={position.price}
+                            value={position.value}
+                            change={position.change}
+                            changePct={position.changePct}
+                          />
+                        )}
+                      </TableBody>
+                    </Table>
                   </>
-                )
               }
             </Paper>
           </Grid>

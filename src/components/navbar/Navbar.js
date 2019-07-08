@@ -57,7 +57,7 @@ class Navbar extends Component {
 
     return (
       <AppBar position="static" color="default">
-      <Toolbar disableGutters>
+        <Toolbar disableGutters>
           <TabsContainer
             textColor="inherit" 
             indicatorColor="primary"
@@ -67,7 +67,7 @@ class Navbar extends Component {
             <Tab label="Portfolio" component={AdapterLink} to="/portfolio" selected />
             <Tab label="Transactions" component={AdapterLink} to="/transactions" />
           </TabsContainer>
-          {loggedIn && (
+          {loggedIn &&
             <RightNavLinks>
               <Avatar 
                 children={name[0]} 
@@ -91,8 +91,7 @@ class Navbar extends Component {
 								<MenuItem onClick={this.handleClick}>Logout</MenuItem>
 							</Menu>
             </RightNavLinks>
-          )}
-
+          }
         </Toolbar>
       </AppBar>
     );
