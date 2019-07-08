@@ -3,7 +3,6 @@ import SessionForm from './SessionForm';
 import { login, clearErrors } from '../../actions/session_actions';
 
 const msp = ({ errors: { session } }) => ({
-  user: { email: '', password: '' },
   errors: session,
   formType: 'login',
 });

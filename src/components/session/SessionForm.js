@@ -26,10 +26,11 @@ const Form = styled.form`
 `;
 
 class SessionForm extends Component {
-  constructor(props) {
-    super(props);
-    this.state = this.props.user;
-  }
+  state = {
+    name: '',
+    email: '',
+    password: '',
+  };
 
   componentWillUnmount() {
     this.props.clearErrors();
@@ -40,6 +41,13 @@ class SessionForm extends Component {
   handleSubmit = e => {
     e.preventDefault();
     this.props.processForm(this.state);
+  }
+
+  loginAsGuest = e => {
+    this.setState({
+      email: 'tc@gmail.com',
+      password: 'password',
+    }, () => this.props.processForm(this.state));
   }
 
   renderErrors = key => {
@@ -54,18 +62,20 @@ class SessionForm extends Component {
   }
 
   render() {
+    const isLoginForm = this.props.formType === 'login';
+
     return (
       <FormContainer> 
         <Paper>
           <Grid container direction='column' spacing={2}>
             <Grid item>
               <Typography align="center" style={{ paddingTop: '1em' }} component="h1" variant="h5">
-                {this.props.formType === 'login' ? "Sign in" : "Register"}
+                {isLoginForm ? 'Sign in' : 'Register'}
               </Typography>
             </Grid>
             <Form>
-              <Grid container direction='column' spacing={1}>
-                {this.props.formType === 'signup' && 
+              <Grid container direction="column" spacing={1}>
+                {!isLoginForm &&
                   <Grid item>
                     <FormControl margin="normal" required fullWidth>
                       <InputLabel htmlFor="text">Name</InputLabel>
@@ -85,7 +95,7 @@ class SessionForm extends Component {
                     <Input name="email" 
                       type="email" 
                       autoComplete="email" 
-                      autoFocus={this.props.formType === 'login'}
+                      autoFocus={isLoginForm}
                       value={this.state.email} 
                       onChange={this.update("email")}
                     />
@@ -114,16 +124,27 @@ class SessionForm extends Component {
                     color="primary"
                     onClick={this.handleSubmit}
                   >
-                    {this.props.formType === 'login' ? "Sign in" : "Register"}
+                    {isLoginForm ? "Sign in" : "Register"}
                   </Button>
                 </Grid>
+                {isLoginForm &&
+                  <Grid item>
+                    <Button
+                      fullWidth
+                      variant="contained"
+                      onClick={this.loginAsGuest}
+                    >
+                      Sign In as Guest
+                    </Button>
+                  </Grid>
+                }
                 <Grid item>
                   <Link
                     color="primary"
                     component={RouterLink}
-                    to={this.props.formType === 'login' ? "/register" : "/login"}
+                    to={isLoginForm ? "/register" : "/login"}
                   >
-                  {this.props.formType === 'login' 
+                  {isLoginForm
                     ? "Don't have an account? Sign up here." 
                     : "Returning user? Sign in here."
                   } 
