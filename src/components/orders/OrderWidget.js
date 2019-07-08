@@ -35,11 +35,7 @@ class OrderWidget extends Component {
     this.props.clearTransactionErrors();
   }
 
-  update = field => e => {
-    return this.setState({
-      [field]: e.target.value
-    });
-  }
+  update = field => e => this.setState({ [field]: e.target.value });
 
   handleSelect = option =>
     option === null
@@ -116,11 +112,8 @@ class OrderWidget extends Component {
               gutterBottom
             >
             {cashBalance
-              ? (
-                `Balance: ${formatCurrency(cashBalance)}`
-              ) : (
-                <CircularProgress />
-              )
+              ? `Balance: ${formatCurrency(cashBalance)}`
+              : <CircularProgress />
             }
             </Typography>
           </Grid>
@@ -137,16 +130,6 @@ class OrderWidget extends Component {
                 <FormControlLabel value="buy" control={<Radio />} label="Buy" />
                 <FormControlLabel value="sell" disabled control={<Radio />} label="Sell" />
               </RadioGroup>
-            </FormControl>
-          </Grid>
-          <Grid item>
-            <FormControl margin="dense" fullWidth>
-              <InputLabel shrink htmlFor="name">Company Name</InputLabel>
-              <Input name="price"
-                type="text"
-                disabled
-                value={this.state.name}
-              />
             </FormControl>
           </Grid>
           <Grid item>
@@ -181,6 +164,16 @@ class OrderWidget extends Component {
               />
             </FormControl>
             {this.renderErrors("quantity")}
+          </Grid>
+          <Grid item>
+            <FormControl margin="dense" fullWidth>
+              <InputLabel shrink htmlFor="name">Company Name</InputLabel>
+              <Input name="name"
+                type="text"
+                disabled
+                value={this.state.name}
+              />
+            </FormControl>
           </Grid>
           <Grid item>
             <FormControl margin="dense" fullWidth>

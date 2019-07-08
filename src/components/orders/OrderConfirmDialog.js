@@ -31,6 +31,7 @@ class OrderConfirmDialog extends Component {
 
   render() {
     const { buy_sell, quantity, symbol, price } = this.props;
+    const type = buy_sell[0].toUpperCase() + buy_sell.slice(1);
     return (
       <div>
         <Button
@@ -52,7 +53,7 @@ class OrderConfirmDialog extends Component {
           <DialogContent dividers>
             <DialogContentText component="div">
               <Typography color="primary" variant="h6">Details</Typography>
-              <Typography color="textPrimary" variant="subtitle1">Type: {buy_sell[0].toUpperCase() + buy_sell.slice(1)}</Typography>
+              <Typography color="textPrimary" variant="subtitle1">Type: {type}</Typography>
               <Typography color="textPrimary" variant="subtitle1">Symbol: {symbol}</Typography>
               <Typography color="textPrimary" variant="subtitle1">{quantity} shares @ ${price}</Typography>
               <Typography color="textPrimary" variant="subtitle1">Total: {formatCurrency(price * quantity)}</Typography>
