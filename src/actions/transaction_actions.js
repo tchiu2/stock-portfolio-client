@@ -27,7 +27,7 @@ const receiveErrors = errors => ({
 
 export const clearTransactionErrors = () => ({
   type: CLEAR_TRANSACTION_ERRORS,
-})
+});
 
 export const fetchTransactions = userId => dispatch => {
   dispatch(requestTransactions());

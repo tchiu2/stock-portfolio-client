@@ -5,7 +5,7 @@ const responseHandler = res => {
   const jwt = res.headers.get('Authorization');
   jwt && sessionStorage.setItem('jwt', jwt);
   return res.json();
-}
+};
 
 const setHeaders = withAuth => {
   const headers = new Headers();
@@ -13,7 +13,8 @@ const setHeaders = withAuth => {
   headers.append("Accept", "application/json");
   withAuth && sessionStorage.jwt && headers.append("Authorization", sessionStorage.jwt);
   return headers;
-}
+};
+
 export const postSession = (url, body = {}) =>
   fetch(`${baseURL}/${url}`, {
     method: "POST",
@@ -27,7 +28,7 @@ export const deleteSession = () => {
     headers: setHeaders(true),
   }).then(responseHandler)
     .then(() => sessionStorage.removeItem('jwt'));
-}
+};
 
 export const getResource = (resource, id, nestedResource = "") =>
   fetch(`${baseURL}/${resource}/${id}/${nestedResource}`, {

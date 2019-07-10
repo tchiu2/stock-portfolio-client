@@ -61,7 +61,11 @@ class OrderWidget extends Component {
       currentUser,
     } = this.props;
 
-    postTransaction(this.state)
+    postTransaction({
+      symbol: this.state.symbol,
+      buy_sell: this.state.buy_sell,
+      quantity: this.state.quantity,
+    })
       .then(() => this.setState(initialState, () => {
 				fetchPortfolio();
 				fetchUser(currentUser);
@@ -128,7 +132,7 @@ class OrderWidget extends Component {
                 onChange={this.update("buy_sell")}
               >
                 <FormControlLabel value="buy" control={<Radio />} label="Buy" />
-                <FormControlLabel value="sell" disabled control={<Radio />} label="Sell" />
+                <FormControlLabel value="sell" control={<Radio />} label="Sell" />
               </RadioGroup>
             </FormControl>
           </Grid>
